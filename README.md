@@ -113,6 +113,9 @@ name.Set("another gopher")
 // Get the field's kind, kind =>  "string"
 name.Kind()
 
+// Get the field's kind even it is pointer, "string" => "string", "*string" => "string"
+name.ElemKind()
+
 // Check if the field is exported or not
 if name.IsExported() {
 	fmt.Println("Name field is exported")
