@@ -60,6 +60,15 @@ func (f *Field) Kind() reflect.Kind {
 	return f.value.Kind()
 }
 
+// ElemKind returns the fields kind, if point, pointer get the underlying kind. such as "string", "map", "bool", etc ..
+func (f *Field) ElemKind() reflect.Kind {
+	if f.value.Kind() != reflect.Ptr {
+		return f.value.Kind()
+	}
+
+	return f.field.Type.Elem().Kind()
+}
+
 // Set sets the field to given value v. It returns an error if the field is not
 // settable (not addressable or not exported) or if the given value's type
 // doesn't match the fields type.
